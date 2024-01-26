@@ -1,0 +1,8 @@
+Snowdrift|Ice
+Electra|Lightning
+Stabby|Piercing
+Spark|Fire
+Skindancer|Psychic
+Mindbender|Psychic
+Farsight|Psychic
+Brain Mole|Psychic

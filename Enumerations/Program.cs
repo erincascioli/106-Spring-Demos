@@ -17,6 +17,8 @@ namespace Enumerations
         //    in words but integral values (for speed of comparison).
         // ** Members are separated by commas and start with capital letters.
         // ------------------------------------------------------------------------
+        
+        // ERIN defined this!
         public enum Donuts
         {
             Glazed,
@@ -25,6 +27,13 @@ namespace Enumerations
             CustardFilled,
             Jelly,
             PinkSprinkles,
+            HalloweenSpider,
+            Cake,
+            Headlight,
+            Mario,
+            MapleBacon,
+            Wario,
+            Good,
             Evil
         }
 
@@ -41,6 +50,9 @@ namespace Enumerations
             Donuts bestDonut = Donuts.PinkSprinkles;
             Donuts dangerous = Donuts.Evil;
 
+            // WILL defines a new donut variable
+            Donuts willDonut = Donuts.Good;
+
             // ** Members that are NOT included in the enumeration cannot be used.
             // This won't work because Coconut is not a member of Donuts.
             //Donuts doesntExist = Donuts.Coconut;
@@ -56,11 +68,11 @@ namespace Enumerations
 
             // Get a random valid enum member
             Random generator = new Random();
-            Donuts myRandomDonut = (Donuts)generator.Next(0, 7);
+            Donuts myRandomDonut = (Donuts)generator.Next(0, 14);
 
             // However - BE CAREFUL when casting from int to an enum. Any integer value can be used!
-            // What are numbers 7 throughy 99?  They are not one of the Donuts members!
-            Donuts myUnknownDonut = (Donuts)generator.Next(7, 100);
+            // What are numbers 14 throughy 99?  They are not one of the Donuts members!
+            Donuts myUnknownDonut = (Donuts)generator.Next(14, 100);
 
 
             // ------------------------------------------------------------------------

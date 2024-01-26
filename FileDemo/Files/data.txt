@@ -1,0 +1,4 @@
+10,12
+A,X
+Grass,60,140,False
+Grass,100,140,False

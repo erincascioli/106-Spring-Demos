@@ -1,0 +1,10 @@
+Frosty|Ice
+Frozen|Ice
+Stormy|Lightning
+Cloud|Lightning
+Needle|Piercing
+Dagger|Piercing
+Cinders|Fire
+Ash|Fire
+Smokey|Fire
+Nightmare|Psychic
