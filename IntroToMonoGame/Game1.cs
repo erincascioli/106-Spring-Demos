@@ -25,8 +25,14 @@ namespace IntroToMonoGame
         private Rectangle resizedCupcakeRect;
         private Rectangle cupcakeRect;
 
+        // Rotation
+        private float rotationAngle;
+
         // Color for background
         private Color purplish;
+
+        // SpriteFont for text
+        private SpriteFont arial20;
         // ------------------------------------------------------------------------------------
 
 
@@ -46,6 +52,7 @@ namespace IntroToMonoGame
             // ***** Initialize fields that are not dependent on content *****
             catPosition = new Vector2(0, 0);
             purplish = new Color(126, 94, 219);
+            rotationAngle = 0f;
             // ------------------------------------------------------------------------------------
 
             // KEEP THIS AS THE LAST STATEMENT IN INITIALIZE
@@ -60,12 +67,14 @@ namespace IntroToMonoGame
             // ***** Load Content *****
             catImage = Content.Load<Texture2D>("cat");
             cupcakeImage = Content.Load<Texture2D>("cupcake");
+            arial20 = Content.Load<SpriteFont>("arial-20");
 
             // ------------------------------------------------------------------------------------
             // ***** Initialize fields  based on loaded content *****
             // Get a rectangle that is one-third the height of the cupcake
             resizedCupcakeRect = new Rectangle(200, 50, cupcakeImage.Width, cupcakeImage.Height/3);
             cupcakeRect = new Rectangle(500, 200, cupcakeImage.Width, cupcakeImage.Height);
+            
             // ------------------------------------------------------------------------------------
         }
 
@@ -75,6 +84,20 @@ namespace IntroToMonoGame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || 
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+
+            // Keyboard and Mouse information
+            KeyboardState kbState = Keyboard.GetState();
+            if(kbState.IsKeyDown(Keys.A))
+            {
+                rotationAngle += 0.05f;
+            }
+
+            MouseState mState = Mouse.GetState();
+            if(mState.LeftButton == ButtonState.Pressed)
+            {
+                rotationAngle -= 0.05f;
+            }
 
             // ------------------------------------------------------------------------------------
             // ***** Debugging Statements *****
@@ -97,6 +120,9 @@ namespace IntroToMonoGame
                 catPosition.X = -catImage.Width;
             }
             // ------------------------------------------------------------------------------------
+
+            
+
 
             // KEEP THIS AS YOUR LAST STATEMENT IN UPDATE
             base.Update(gameTime);
@@ -135,6 +161,24 @@ namespace IntroToMonoGame
                cupcakeImage,               // Image to use
                cupcakeRect,                // Upper-left corner, W, H (as Rect)
                Color.White);               // Color overlay
+
+            _spriteBatch.Draw(
+                catImage,
+                new Vector2(400, 240),
+                null,
+                Color.White,
+                rotationAngle,
+                new Vector2(catImage.Width/2, catImage.Height/2),
+                1f,
+                SpriteEffects.None,
+                1f);
+
+            _spriteBatch.DrawString(
+                arial20,                        // Which font?
+                "Hi all",                       // What text?
+                new Vector2(50, 50),            // Where?
+                Color.Firebrick);               // Color?
+
 
             // ALWAYS NEEDED FOR DRAWING!!!
             _spriteBatch.End();

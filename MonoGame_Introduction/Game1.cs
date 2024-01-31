@@ -20,8 +20,12 @@ namespace MonoGame_Introduction
         private Vector2 catPosition;
         private Rectangle cupcakeRect;
 
+        private float rotationAngle;
 
+        private SpriteFont arial20bold;
+        private SpriteFont comicSans36;
 
+        DemoClass myObject;
 
 
         public Game1()
@@ -41,6 +45,7 @@ namespace MonoGame_Introduction
 
             catPosition = new Vector2(0, 0);
             cupcakeRect = new Rectangle(200, 50, 100, 300);
+            rotationAngle = 0f;
 
             // ----------------------------------------------------------------
 
@@ -60,6 +65,10 @@ namespace MonoGame_Introduction
             catImage = Content.Load<Texture2D>("cat");
             cupcakeImage = Content.Load<Texture2D>("cupcake");
 
+            arial20bold = Content.Load<SpriteFont>("Arial_20_Bold");
+            comicSans36 = Content.Load<SpriteFont>("ComicSans_36");
+
+            myObject = new DemoClass(catImage, new Vector2(50, 50));
 
             // ----------------------------------------------------------------
         }
@@ -71,10 +80,27 @@ namespace MonoGame_Introduction
                 Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            // Keyboard and Mouse State Information
+            KeyboardState kbState = Keyboard.GetState();
+            MouseState mState = Mouse.GetState();
+            
+            if(kbState.IsKeyDown(Keys.N))
+            {
+                rotationAngle += 0.1f;
+            }
+
+            if(mState.LeftButton == ButtonState.Pressed)
+            {
+                rotationAngle += 0.1f;
+            }
+
+
+            // Update this object on a per-frame bases
+            myObject.Update();
+
+
+
             // ----------------------------------------------------------------
-            // TODO: Add your update logic here
-
-
             // Debug statement here:
             // Appears in the Output window
 
@@ -86,7 +112,7 @@ namespace MonoGame_Introduction
             if(catPosition.X > 800)
             {
                 catPosition.X = -catImage.Width;
-            }
+            }            
 
             // ----------------------------------------------------------------
 
@@ -118,6 +144,25 @@ namespace MonoGame_Introduction
                 Color.Chartreuse
                 );
 
+            _spriteBatch.Draw(
+                cupcakeImage,
+                new Vector2(400, 240),
+                null,
+                Color.White,
+                rotationAngle,
+                new Vector2(cupcakeImage.Width, cupcakeImage.Height),
+                1f,
+                SpriteEffects.None,
+                1f);
+
+            // Draw text to the window!
+            _spriteBatch.DrawString(
+                arial20bold,                    // Which font?
+                "Hi everyone!",                 // What text?
+                new Vector2(0, 100),            // Where?
+                Color.PapayaWhip);              // Color
+
+            myObject.Draw(_spriteBatch);
 
             _spriteBatch.End();
             // ----------------------------------------------------------------
