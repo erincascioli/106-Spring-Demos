@@ -10,33 +10,37 @@ namespace GenericDemo
 	/// A structure for holding some data (and mostly
 	/// demoing generics)
 	/// </summary>
-	/// <typeparam name="T">The type of data to hold</typeparam>
-	class MyDataStructure<T>
+	/// <typeparam name="A">The type of data to hold</typeparam>
+	class MyDataStructure<A>
 	{
 		// Fields for the data we want to hold, and any
 		// other important meta data
-		private T[] data;
+		private A[] data;
 		private int count; // Count is always an int!
+        private A someValue;
 
         // NOOOOOOOOOOOOOOOOOOOOO
         /*
-        public T[] Data
+        public A[] Data
         {
             get { return data; }
         }
         */
 
+
         // Indexer property
-        public T this[int index]
+        public A this[int index]
         {
             get
             {
-                // Error check here!  Make sure index is valid. If not, throw an exception.
+                // Error check here!
+                // Make sure index is valid. If not, throw an exception.
                 return data[index];
             }
             set
             {
-                // Error check here!  Make sure index is valid. If not, throw an exception.
+                // Error check here!
+                // Make sure index is valid. If not, throw an exception.
                 data[index] = value;
             }
         }
@@ -54,8 +58,9 @@ namespace GenericDemo
 		public MyDataStructure()
 		{
 			// Initialize the array
-			data = new T[4];
+			data = new A[4];
             count = 0;
+            someValue = default(A);
 		}
 
         /// <summary>
@@ -66,7 +71,7 @@ namespace GenericDemo
             // Fill the array with starting data
             for(int i = 0; i < 4; i++)
             {
-                data[i] = default(T);
+                data[i] = default(A);
             }
         }
 
@@ -76,7 +81,7 @@ namespace GenericDemo
         /// it'll probably blow up
         /// </summary>
         /// <param name="item">The thing to add to the structure</param>
-        public void Add(T item)
+        public void Add(A item)
 		{
 			// Error checking here would be nice!
 			data[count] = item;
@@ -88,9 +93,15 @@ namespace GenericDemo
         /// </summary>
         /// <param name="index">Index of data to retrieve</param>
         /// <returns>The data at that index in the underlying array</returns>
-        public T GetData(int index)
+        public A GetData(int index)
         {
-            // Error check here!  Make sure index is valid. 
+            if(index < 0 || index >= count)
+            {
+                // Choose to throw an exception
+                // Or I could do nothing
+                // Or I could insert data at a valid index instead
+                // Or I could use Abs()
+            }
             return data[index];
         }
 	}

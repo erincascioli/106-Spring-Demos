@@ -40,17 +40,20 @@ namespace GenericDemo
 
             // -------------- NO NO NO -------------------
             // DON'T DO THIS!!!!!!
-            //int[] dataFromTheDS = myOtherStuff.Data;
-            /*
+            int[] dataFromTheDS = myOtherStuff.Data;
+            
             dataFromTheDS[0] = 0;
             dataFromTheDS[1] = 0;
             dataFromTheDS[2] = 0;
             dataFromTheDS[3] = 0;
+            dataFromTheDS[-3] = 0;
             Console.WriteLine(dataFromTheDS[0]);
             Console.WriteLine(dataFromTheDS[1]);
             Console.WriteLine(dataFromTheDS[2]);
             Console.WriteLine(dataFromTheDS[3]);
-            */
+
+            dataFromTheDS = null;
+            
 
 
             // This data structure could also hold classes
